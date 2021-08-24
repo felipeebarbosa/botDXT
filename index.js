@@ -17,6 +17,7 @@ setInterval(() => {
           setTimeout( async function(){
             await page.evaluate(() => console.log(`Requeste enviada`));
             await page.click('.register-btn')[0]
+            await page.screenshot({ path: 'example.png' });
             setTimeout(async() => {
                 await browser.close(); 
             }, 1000);
@@ -29,4 +30,4 @@ setInterval(() => {
       
       })();
       
-}, 84600000);
+}, 60000);
