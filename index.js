@@ -1,7 +1,13 @@
 const puppeteer = require('puppeteer');
+
+
 require('dotenv').config()
+
 setInterval(() => {
+
     (async () => {
+        var number = Math.random() * (1000 - 1) + 1
+
         const browser = await puppeteer.launch({
             headless : false,
         });
@@ -12,13 +18,16 @@ setInterval(() => {
         await page.type('#password',  process.env.PASSWORD)
         await page.click('.login-btn')
       setTimeout( async function(){
-          await page.evaluate(() => console.log(`Não foi marcado`));
+          await page.evaluate(() => console.log(`'Não' foi marcado`));
           await page.click('.radio-list-item-nao')[0]
           setTimeout( async function(){
             await page.evaluate(() => console.log(`Requeste enviada`));
+            // await page.evaluate(() => console.log(number));
+            
             await page.click('.register-btn')[0]
-            await page.screenshot({ path: 'example.png' });
             setTimeout(async() => {
+            await page.screenshot({ path: number + '.png' });
+
                 await browser.close(); 
             }, 1000);
            
@@ -30,4 +39,4 @@ setInterval(() => {
       
       })();
       
-}, 84600000);
+}, 15000);
